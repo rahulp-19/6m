@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Nikku - 6 Months of Love</title>
+    <meta name="description" content="A special interactive 6-month anniversary gift for Nikku.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script>
+    window.onerror = function(msg, url, line) {
+        var errDiv = document.createElement('div');
+        errDiv.style = 'position:fixed;top:10px;left:10px;background:rgba(255,0,0,0.95);color:white;padding:15px;z-index:99999;border-radius:8px;font-family:sans-serif;font-size:12px;max-width:90%;word-wrap:break-word;box-shadow:0 5px 15px rgba(0,0,0,0.3);';
+        errDiv.innerHTML = '<strong>JS Diagnostic Error:</strong> ' + msg + '<br><em style="font-size:10px;">Line: ' + line + ' | ' + url + '</em>';
+        document.body.appendChild(errDiv);
+        return false;
+    };
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas for Stars / Hearts -->
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Ambient Sound Toggle -->
+    <button id="music-toggle" class="floating-btn" aria-label="Toggle music">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-music-on"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-music-off hidden"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 14v-9l12-2v7"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+    </button>
+
+    <!-- INTRO ENVELOPE SCREEN -->
+    <div id="intro-screen" class="active">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <div class="letter">
+                    <h2 class="letter-cursive">Hey Nikku...</h2>
+                    <p class="letter-text">I can't believe it's already been 6 months. Here's a little memory of our beautiful journey together.</p>
+                    <div class="heart-seal">❤️</div>
+                </div>
+            </div>
+            <button id="open-btn" class="glowing-btn">Open My Heart 💖</button>
+        </div>
+    </div>
+
+    <!-- MAIN APP DASHBOARD -->
+    <main id="app-container" class="hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="cursive-title">Our Love Story</h1>
+            <p class="subtitle">Happy 6 Months, Nikku!</p>
+        </header>
+
+        <!-- TAB 1: JOURNEY / SCRAPBOOK (POLAROIDS) -->
+        <section class="tab-content active" id="tab-timeline">
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <!-- Polaroid 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">💖</div>
+                    <div class="polaroid-wrapper" style="--rotation: -3deg;">
+                        <div class="polaroid-card">
+                            <div class="polaroid-image-placeholder red-grad">
+                                <span>✨ The Beginning ✨</span>
+                            </div>
+                            <div class="polaroid-caption">
+                                <span class="card-date">January 9, 2026</span>
+                                <h3>The Spark</h3>
+                                <p>The magical day we started this beautiful journey. Meeting you changed everything, Nikku. It felt like the beginning of forever.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Polaroid 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">🌱</div>
+                    <div class="polaroid-wrapper" style="--rotation: 2deg;">
+                        <div class="polaroid-card">
+                            <div class="polaroid-image-placeholder blue-grad">
+                                <span>📞 Late Night Chats 🌙</span>
+                            </div>
+                            <div class="polaroid-caption">
+                                <span class="card-date">February 9, 2026</span>
+                                <h3>Growing Closer</h3>
+                                <p>Late night calls, endless text messages, and learning all the little details about each other. Talking to you became my favorite routine.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Polaroid 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">🌸</div>
+                    <div class="polaroid-wrapper" style="--rotation: -2deg;">
+                        <div class="polaroid-card">
+                            <div class="polaroid-image-placeholder green-grad">
+                                <span>🤗 Safest Place 🥰</span>
+                            </div>
+                            <div class="polaroid-caption">
+                                <span class="card-date">March 9, 2026</span>
+                                <h3>Spring of Love</h3>
+                                <p>Three months of laughs, inside jokes, and sharing secrets. You quickly became my safest haven and my happiest thought.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Polaroid 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">💫</div>
+                    <div class="polaroid-wrapper" style="--rotation: 3deg;">
+                        <div class="polaroid-card">
+                            <div class="polaroid-image-placeholder purple-grad">
+                                <span>♾️ Together Stronger ♾️</span>
+                            </div>
+                            <div class="polaroid-caption">
+                                <span class="card-date">April 9, 2026</span>
+                                <h3>Inseparable</h3>
+                                <p>Through all the small moments, my love for you has only grown deeper. Every milestone feels effortless when we do it together.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Polaroid 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">🌟</div>
+                    <div class="polaroid-wrapper" style="--rotation: -1deg;">
+                        <div class="polaroid-card">
+                            <div class="polaroid-image-placeholder gold-grad">
+                                <span>🌌 To the Moon 🚀</span>
+                            </div>
+                            <div class="polaroid-caption">
+                                <span class="card-date">May 9, 2026</span>
+                                <h3>To the Stars & Back</h3>
+                                <p>Five months of pure happiness. Looking back at our memories makes me realize how incredibly lucky I am to have you.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Polaroid 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">💕</div>
+                    <div class="polaroid-wrapper" style="--rotation: 4deg;">
+                        <div class="polaroid-card highlighted-polaroid">
+                            <div class="polaroid-image-placeholder pink-grad">
+                                <span>🎉 Half a Year of Us 🥂</span>
+                            </div>
+                            <div class="polaroid-caption">
+                                <span class="card-date">June 9, 2026 - Present</span>
+                                <h3>6 Months Anniversary</h3>
+                                <p>Six months of comfort, support, and endless smiles. Happy Anniversary, Nikku! Here is to a lifetime of chapters together.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: DASHBOARD (CLOCK & LOVE JAR) -->
+        <section class="tab-content" id="tab-dashboard">
+            <!-- Counter Board -->
+            <div class="clock-display">
+                <h2>Time We've Shared ⏳</h2>
+                <div class="timer-container">
+                    <div class="timer-box">
+                        <span id="months-val" class="timer-number">00</span>
+                        <span class="timer-label">Months</span>
+                    </div>
+                    <div class="timer-box">
+                        <span id="days-val" class="timer-number">00</span>
+                        <span class="timer-label">Days</span>
+                    </div>
+                    <div class="timer-box">
+                        <span id="hours-val" class="timer-number">00</span>
+                        <span class="timer-label">Hours</span>
+                    </div>
+                    <div class="timer-box">
+                        <span id="minutes-val" class="timer-number">00</span>
+                        <span class="timer-label">Mins</span>
+                    </div>
+                    <div class="timer-box">
+                        <span id="seconds-val" class="timer-number">00</span>
+                        <span class="timer-label">Secs</span>
+                    </div>
+                </div>
+                <p class="timer-footer">And my love for you grows every second... 💓</p>
+            </div>
+
+            <!-- Love Jar Section -->
+            <div class="jar-section">
+                <h2>Love Jar 🏺</h2>
+                <p class="description">Tap the jar to retrieve a reason why I love you.</p>
+                
+                <div class="jar-wrapper" id="love-jar-trigger">
+                    <svg class="love-jar" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 70 30 L 130 30 Q 135 30 135 37 L 135 45 Q 135 50 130 50 L 70 50 Q 65 50 65 45 L 65 37 Q 65 30 70 30 Z" fill="#e5a9a9" stroke="#fff" stroke-width="2" />
+                        <rect x="75" y="50" width="50" height="15" fill="#f0e2e2" opacity="0.6" stroke="#fff" stroke-width="1.5" />
+                        <path d="M 75 65 C 40 80, 30 130, 30 180 C 30 220, 50 230, 100 230 C 150 230, 170 220, 170 180 C 170 130, 160 80, 125 65 Z" fill="rgba(255, 255, 255, 0.15)" stroke="#fff" stroke-width="3" />
+                        <rect x="65" y="110" width="70" height="40" rx="5" fill="#fff" opacity="0.9" />
+                        <text x="100" y="135" font-family="'Caveat', cursive" font-size="18" font-weight="bold" fill="#ff4d8d" text-anchor="middle">Nikku 💖</text>
+                        <circle cx="60" cy="180" r="3" fill="#fff" opacity="0.8" />
+                        <circle cx="140" cy="160" r="4" fill="#fff" opacity="0.5" />
+                        <circle cx="80" cy="90" r="3" fill="#fff" opacity="0.6" />
+                        <path d="M 95 160 Q 100 152 105 160 Q 110 152 115 160 Q 115 170 105 178 Q 95 170 95 160 Z" fill="#ff4d8d" opacity="0.8" />
+                        <path d="M 65 85 Q 68 80 71 85 Q 74 80 77 85 Q 77 91 71 96 Q 65 91 65 85 Z" fill="#ff75a0" opacity="0.7" />
+                        <path d="M 125 90 Q 128 85 131 90 Q 134 85 137 90 Q 137 96 131 101 Q 125 96 125 90 Z" fill="#ff75a0" opacity="0.7" />
+                    </svg>
+                </div>
+
+                <!-- Floating Note Overlay -->
+                <div class="note-popup" id="note-popup">
+                    <div class="note-content">
+                        <button class="close-note" id="close-note-btn">&times;</button>
+                        <div class="note-heart">❤️</div>
+                        <p id="note-text" class="note-cursive-text">You are my today and all of my tomorrows.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: LOVE COUPONS -->
+        <section class="tab-content" id="tab-coupons">
+            <div class="coupons-section">
+                <h2>Love Coupons 🎟️</h2>
+                <p class="description">Redeem these cute virtual vouchers whenever you want, Nikku!</p>
+                <div class="coupons-grid">
+                    <!-- Coupon 1 -->
+                    <div class="coupon-card" id="coupon-1">
+                        <div class="coupon-inner">
+                            <div class="coupon-front pink-grad">
+                                <div class="coupon-glow-icon">🤗</div>
+                                <h3>Warm Hug</h3>
+                                <p>Tap to scratch card</p>
+                            </div>
+                            <div class="coupon-back">
+                                <h3>Redeemed! 💖</h3>
+                                <p class="coupon-detail">One extremely long, warm hug on demand. No questions asked.</p>
+                                <span class="coupon-stamp">VALID FOREVER</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coupon 2 -->
+                    <div class="coupon-card" id="coupon-2">
+                        <div class="coupon-inner">
+                            <div class="coupon-front blue-grad">
+                                <div class="coupon-glow-icon">🍦</div>
+                                <h3>Ice Cream Date</h3>
+                                <p>Tap to scratch card</p>
+                            </div>
+                            <div class="coupon-back">
+                                <h3>Redeemed! 💖</h3>
+                                <p class="coupon-detail">A late-night trip to get your favorite ice cream flavors.</p>
+                                <span class="coupon-stamp">VALID FOREVER</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coupon 3 -->
+                    <div class="coupon-card" id="coupon-3">
+                        <div class="coupon-inner">
+                            <div class="coupon-front purple-grad">
+                                <div class="coupon-glow-icon">🍿</div>
+                                <h3>Movie Choice</h3>
+                                <p>Tap to scratch card</p>
+                            </div>
+                            <div class="coupon-back">
+                                <h3>Redeemed! 💖</h3>
+                                <p class="coupon-detail">You pick the movie, and I will watch it without complaining.</p>
+                                <span class="coupon-stamp">VALID FOREVER</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coupon 4 -->
+                    <div class="coupon-card" id="coupon-4">
+                        <div class="coupon-inner">
+                            <div class="coupon-front gold-grad">
+                                <div class="coupon-glow-icon">👑</div>
+                                <h3>Queen for a Day</h3>
+                                <p>Tap to scratch card</p>
+                            </div>
+                            <div class="coupon-back">
+                                <h3>Redeemed! 💖</h3>
+                                <p class="coupon-detail">I will cook, clean, pamper you, and follow all your instructions!</p>
+                                <span class="coupon-stamp">VALID FOREVER</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: MINI GAME -->
+        <section class="tab-content" id="tab-game">
+            <div class="game-section">
+                <h2>Catch My Love 🧺</h2>
+                <p class="description">Catch the falling hearts! Drag the basket to collect them.</p>
+                <div class="game-score-board">
+                    <span>Score: <strong id="game-score">0</strong></span>
+                    <span>High Score: <strong id="game-high-score">0</strong></span>
+                </div>
+                <div class="game-container">
+                    <canvas id="game-canvas"></canvas>
+                    <div id="game-over-overlay" class="game-overlay hidden">
+                        <h3>Game Over! 💔</h3>
+                        <p>Total Hearts Caught: <span id="final-score">0</span></p>
+                        <button id="restart-game-btn" class="glowing-btn">Play Again 💖</button>
+                    </div>
+                    <div id="game-start-overlay" class="game-overlay">
+                        <h3>Catch the Hearts!</h3>
+                        <p>Collect falling hearts. Avoid dark rain drops!</p>
+                        <button id="start-game-btn" class="glowing-btn">Start Game 🎮</button>
+                    </div>
+                    <div id="game-win-overlay" class="game-overlay hidden">
+                        <h3>You Won! 🏆</h3>
+                        <p>Nikku caught all my love! 💖</p>
+                        <p class="game-win-subtext">You are absolutely amazing!</p>
+                        <button id="win-restart-btn" class="glowing-btn">Play Again 🎮</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: GARDEN -->
+        <section class="tab-content" id="tab-garden">
+            <div class="garden-section">
+                <h2>Garden of Stars 🌸</h2>
+                <p class="description">Tap on the screen below to plant a seed and watch a beautiful neon flower slowly grow and bloom.</p>
+                <div class="canvas-container">
+                    <canvas id="garden-canvas"></canvas>
+                    <div class="garden-instructions">Tap to bloom 💖</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Tab Navigation Bar -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-tab="tab-timeline">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                <span>Scrapbook</span>
+            </button>
+            <button class="nav-item" data-tab="tab-dashboard">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Us</span>
+            </button>
+            <button class="nav-item" data-tab="tab-coupons">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+                <span>Coupons</span>
+            </button>
+            <button class="nav-item" data-tab="tab-game">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <span>Game</span>
+            </button>
+            <button class="nav-item" data-tab="tab-garden">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 6v12"></path><path d="M8 10h8"></path></svg>
+                <span>Garden</span>
+            </button>
+        </nav>
+    </main>
+
+    <!-- Polaroid Zoom Modal -->
+    <div id="polaroid-modal" class="polaroid-zoom-modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-card-content"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
